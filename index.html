@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FireTV Cloner - Run Multiple Apps</title>
-   <style>
+    <style>
         :root {
             --neon-blue: #00f3ff;
             --neon-purple: #bc13fe;
@@ -28,7 +28,6 @@
             padding: 20px;
         }
 
-        /* Banner styling */
         .banner {
             width: 100%;
             height: auto;
@@ -72,19 +71,18 @@
         .features li {
             font-size: 1.5rem;
             margin: 15px 0;
-            padding-left: 30px;
+            padding-left: 35px;
             position: relative;
             text-align: left;
         }
 
         .features li::before {
-            content: "ðŸ”¥";
+            content: "🔥";
             position: absolute;
             left: 0;
             top: 2px;
         }
 
-        /* Main CTA Button */
         .cta-btn {
             display: inline-block;
             background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
@@ -108,7 +106,7 @@
             color: #fff;
         }
 
-        /* --- UPDATED POPUP STYLES --- */
+        /* Modal Styles */
         .modal {
             display: none; 
             position: fixed;
@@ -123,12 +121,10 @@
 
         .modal-content {
             background-color: var(--modal-bg);
-            /* This section fixes the positioning */
             position: fixed; 
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%); /* Centers it perfectly */
-            
+            transform: translate(-50%, -50%);
             padding: 30px;
             border: 2px solid var(--neon-blue);
             width: 90%;
@@ -136,22 +132,19 @@
             border-radius: 20px;
             box-shadow: 0 0 50px rgba(0, 243, 255, 0.3);
             text-align: center;
-            
-            /* These lines insure it never goes off screen */
             max-height: 90vh; 
-            overflow-y: auto; /* Adds scrollbar if screen is too small */
+            overflow-y: auto;
         }
 
         .close {
             color: #aaa;
-            float: right;
             font-size: 28px;
             font-weight: bold;
             position: absolute;
             top: 10px;
             right: 20px;
             cursor: pointer;
-            z-index: 1001; /* Keeps close button on top */
+            z-index: 1001;
         }
 
         .close:hover {
@@ -161,15 +154,16 @@
         .modal-download-btn {
             display: block;
             width: 80%;
-            margin: 20px auto 30px auto;
+            margin: 15px auto;
             background: #fff;
             color: var(--bg-color);
             font-weight: bold;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             padding: 15px;
             text-decoration: none;
             border-radius: 10px;
             border: 2px solid var(--neon-blue);
+            transition: 0.3s;
         }
 
         .modal-download-btn:hover {
@@ -184,7 +178,7 @@
         }
 
         .donate-img {
-            max-width: 250px;
+            max-width: 200px;
             width: 100%;
             border-radius: 10px;
             border: 2px solid var(--neon-purple);
@@ -198,9 +192,9 @@
         }
 
         @media (max-width: 600px) {
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 1.4rem; }
-            .cta-btn { font-size: 1.5rem; padding: 15px 40px; width: 80%; }
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.2rem; }
+            .cta-btn { font-size: 1.4rem; padding: 15px 30px; width: 85%; }
         }
     </style>
 </head>
@@ -222,15 +216,15 @@
                 <li>Separate Data & Settings</li>
                 <li>Perfect for Streaming & Games</li>
                 <li>FireTV Remote Compatible</li>
-                 <li>Fire os6 & os7 & os8 Compatible</li>
-                <li>100% FREE </li>
+                <li>Fire OS 6, 7 & 8 Compatible</li>
+                <li>100% FREE</li>
             </ul>
         </div>
 
         <a id="openModalBtn" class="cta-btn">Download Now</a>
         
-        <br>
-        <span style="color:#666">Version 1.0 â€¢ APK for FireOS â€¢ By -=SaWkYm0D=-</span>
+        <br><br>
+        <span style="color:#666">Version 1.0 • APK for FireOS • By -=SaWkYm0D=-</span>
 
     </div>
 
@@ -239,13 +233,15 @@
             <span class="close">&times;</span>
             
             <h2 style="color:white; text-shadow: 0 0 5px var(--neon-blue);">Ready to Install?</h2>
-            <p style="color:#ccc;">Click below to grab the APK file.</p>
+            <p style="color:#ccc;">Select your FireOS version to grab the APK.</p>
             
-            <a href="https://files.catbox.moe/vrgac6.apk" class="modal-download-btn">â¬‡ï¸ Fire Os 7 & 8 APK</a>
-			<p style="color:#ccc;">Downloader Code  3129602</p>
-			<a href="https://files.catbox.moe/ee7drg.apk" class="modal-download-btn">â¬‡ï¸ Fire Os 6 APK</a>
-            <p style="color:#ccc;">Downloader Code 4853348</p>
-            <hr style="border-color: #333; margin: 25px 0;">
+            <a href="https://files.catbox.moe/vrgac6.apk" class="modal-download-btn">⬇️ Fire OS 7 & 8 APK</a>
+            <p style="color:#00f3ff; font-weight: bold; margin-top: -5px;">Downloader Code: 3129602</p>
+
+            <a href="https://files.catbox.moe/ee7drg.apk" class="modal-download-btn">⬇️ Fire OS 6 APK</a>
+            <p style="color:#00f3ff; font-weight: bold; margin-top: -5px;">Downloader Code: 4853348</p>
+
+            <hr style="border: 0; border-top: 1px solid #333; margin: 25px 0;">
 
             <div class="donate-section">
                 <p>Enjoying the app? Buy me a coffee!</p>
@@ -257,26 +253,18 @@
     </div>
 
     <script>
-        // Get the modal
         var modal = document.getElementById("downloadModal");
-
-        // Get the button that opens the modal
         var btn = document.getElementById("openModalBtn");
-
-        // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close")[0];
 
-        // When the user clicks the button, open the modal 
         btn.onclick = function() {
             modal.style.display = "block";
         }
 
-        // When the user clicks on <span> (x), close the modal
         span.onclick = function() {
             modal.style.display = "none";
         }
 
-        // When the user clicks anywhere outside of the modal, close it
         window.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
