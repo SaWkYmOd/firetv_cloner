@@ -40,10 +40,13 @@
             font-size: 3.5rem;
             text-transform: uppercase;
             margin: 40px 0 20px 0;
-            background: -webkit-linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+            color: transparent;
+            /* text-shadow would paint over the clipped gradient; drop-shadow glows behind it */
+            filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.3));
             line-height: 1.1;
         }
 
@@ -97,10 +100,11 @@
             box-shadow: 0 0 30px rgba(0, 243, 255, 0.4);
             border: 2px solid white;
             cursor: pointer;
-            margin-bottom: 50px;
+            font-family: inherit;
         }
 
-        .cta-btn:hover {
+        .cta-btn:hover,
+        .cta-btn:focus-visible {
             transform: scale(1.05);
             box-shadow: 0 0 50px rgba(188, 19, 254, 0.6);
             color: #fff;
@@ -136,7 +140,38 @@
             overflow-y: auto;
         }
 
+        .version {
+            display: block;
+            margin-top: 40px;
+            color: #666;
+        }
+
+        .modal-title {
+            color: white;
+            text-shadow: 0 0 5px var(--neon-blue);
+        }
+
+        .modal-text {
+            color: #ccc;
+        }
+
+        .downloader-code {
+            color: var(--neon-blue);
+            font-weight: bold;
+            margin: -5px 0 20px;
+        }
+
+        .modal-divider {
+            border: 0;
+            border-top: 1px solid #333;
+            margin: 25px 0;
+        }
+
         .close {
+            background: none;
+            border: none;
+            padding: 0;
+            line-height: 1;
             color: #aaa;
             font-size: 28px;
             font-weight: bold;
@@ -147,7 +182,8 @@
             z-index: 1001;
         }
 
-        .close:hover {
+        .close:hover,
+        .close:focus-visible {
             color: var(--neon-blue);
         }
 
@@ -166,7 +202,8 @@
             transition: 0.3s;
         }
 
-        .modal-download-btn:hover {
+        .modal-download-btn:hover,
+        .modal-download-btn:focus-visible {
             background: var(--neon-blue);
             color: #000;
         }
@@ -181,7 +218,8 @@
             border-bottom: 1px dashed var(--neon-purple);
         }
 
-        .readme-link:hover {
+        .readme-link:hover,
+        .readme-link:focus-visible {
             color: var(--neon-blue);
             border-color: var(--neon-blue);
         }
@@ -198,9 +236,16 @@
             border-radius: 10px;
             border: 2px solid var(--neon-purple);
             transition: transform 0.2s;
-            cursor: pointer;
         }
 
+        /* Visible focus ring for FireTV remote / keyboard navigation */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 3px solid var(--neon-blue);
+            outline-offset: 4px;
+        }
+
+        .donate-section a:focus-visible .donate-img,
         .donate-img:hover {
             transform: scale(1.05);
             box-shadow: 0 0 20px rgba(188, 19, 254, 0.5);
@@ -215,7 +260,10 @@
 </head>
 <body>
 
-    <img src="banner.png" alt="FireTV Cloner Banner" class="banner">
+    <picture>
+        <source srcset="banner.webp" type="image/webp">
+        <img src="banner.png" alt="FireTV Cloner Banner" class="banner" width="1600" height="679">
+    </picture>
 
     <div class="container">
         
@@ -236,32 +284,29 @@
             </ul>
         </div>
 
-        <a id="openModalBtn" class="cta-btn">Download Now</a>
-        
-        <br><br>
-        <span style="color:#666">Version 1.0 • APK for FireOS • By -=SaWkYm0D=-</span>
+        <button type="button" id="openModalBtn" class="cta-btn" aria-haspopup="dialog" aria-controls="downloadModal">Download Now</button>
+
+        <span class="version">Version 1.0 • APK for FireOS • By -=SaWkYm0D=-</span>
 
     </div>
 
-    <div id="downloadModal" class="modal">
+    <div id="downloadModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            
-            <h2 style="color:white; text-shadow: 0 0 5px var(--neon-blue);">Ready to Install?</h2>
-            <p style="color:#ccc;">Select your FireOS version to grab the APK.</p>
-            
-            <a href="https://files.catbox.moe/ti5hap.apk" class="modal-download-btn">⬇️ Fire OS 6/7/8 APK</a>
-            <p style="color:#00f3ff; font-weight: bold; margin-top: -5px;">Downloader Code: 2124538</p>
+            <button type="button" class="close" aria-label="Close">&times;</button>
 
-            <div style="margin: 20px 0;"></div>
+            <h2 id="modalTitle" class="modal-title">Ready to Install?</h2>
+            <p class="modal-text">Select your FireOS version to grab the APK.</p>
+
+            <a href="https://files.catbox.moe/ti5hap.apk" class="modal-download-btn">⬇️ Fire OS 6/7/8 APK</a>
+            <p class="downloader-code">Downloader Code: 2124538</p>
 
             <a href="readme.html" class="readme-link">⚠️ View OS 6 Setup Instructions</a>
 
-            <hr style="border: 0; border-top: 1px solid #333; margin: 25px 0;">
+            <hr class="modal-divider">
 
             <div class="donate-section">
                 <p>Enjoying the app? Buy me a coffee!</p>
-                <a href="https://ko-fi.com/sawkymod" target="_blank">
+                <a href="https://ko-fi.com/sawkymod" target="_blank" rel="noopener noreferrer">
                     <img src="donate.gif" alt="Support the Dev" class="donate-img">
                 </a>
             </div>
@@ -269,23 +314,35 @@
     </div>
 
     <script>
-        var modal = document.getElementById("downloadModal");
-        var btn = document.getElementById("openModalBtn");
-        var span = document.getElementsByClassName("close")[0];
+        const modal = document.getElementById("downloadModal");
+        const openBtn = document.getElementById("openModalBtn");
+        const closeBtn = modal.querySelector(".close");
 
-        btn.onclick = function() {
+        function openModal() {
             modal.style.display = "block";
+            modal.querySelector(".modal-download-btn").focus();
         }
 
-        span.onclick = function() {
+        function closeModal() {
             modal.style.display = "none";
+            openBtn.focus();
         }
 
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
+        openBtn.addEventListener("click", openModal);
+        closeBtn.addEventListener("click", closeModal);
+
+        modal.addEventListener("click", (event) => {
+            if (event.target === modal) {
+                closeModal();
             }
-        }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" && modal.style.display === "block") {
+                event.preventDefault();
+                closeModal();
+            }
+        });
     </script>
 
 </body>
